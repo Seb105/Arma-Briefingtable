@@ -4,7 +4,7 @@
  * This function creates a minified representation of a marker area on a table, both given as arguments. It
  *
  * Arguments:
- * 0: Table on which to create the minified representaiton. If a minified representation already exists, it will be cleared before starting. <OBJECT>
+ * 0: Table on which to create the minified representation. If a minified representation already exists, it will be cleared before starting. <OBJECT>
  * 1: AREA marker string representation (i.e "marker_0") <STRING>
  * 2: Optional  <NUMBER> (default: 20) - Terrain resolution (x*y resolution of terrain cubes). Setting this too high will be VERY laggy.
  * 4: Optional  <NUMBER> (default: 1) - Scale multiplier. 3 = map is 3x the size of the table. Useful for spanning multiple tables.
@@ -101,7 +101,7 @@ private _vectorDiff = [0, 0, _tableHeight/2 + (_zOffset * _scale) + 0.05]; // ne
 
 {
     private _model = (getModelInfo _x)#1;
-    if (_model != "" && {(((boundingBoxReal  _x)#2) * _scale * getObjectScale _x ) > 0.005}) then {
+    if (_model != "" && !isObjectHidden _x && {(((boundingBoxReal  _x)#2) * _scale * getObjectScale _x ) > 0.005}) then {
         isNil {
             private _relCentre = _dummy worldToModel (ASLtoAGL getPosWorld _x);
             private _relVectDir = _dummy vectorWorldToModel (vectorDir _x);
