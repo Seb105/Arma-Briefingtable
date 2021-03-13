@@ -36,7 +36,15 @@ params [
     ["_createTrigger", true]
 ];
 
-if (isNil "_table" || {isNull _table || {_marker == "" || {private _temp = createMarkerLocal [_marker, [0,0,0]]; deleteMarkerLocal _temp; _temp != ""}}}) exitWith {};
+if (isNil "_table" || {
+    isNull _table || {
+        _marker == "" || {
+            private _temp = createMarkerLocal [_marker, [0,0,0]]; 
+            deleteMarkerLocal _temp; 
+            _temp != "" //a duplicate marker should fail; otherwise this marker didn't exist at all
+        }
+    }
+}) exitWith {};
 
 _table enableSimulation false;
 
