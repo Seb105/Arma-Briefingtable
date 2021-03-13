@@ -36,7 +36,7 @@ params [
     ["_createTrigger", true]
 ];
 
-if (isNil "_table" || {isNull _table || {_marker == "" || {_temp = createMarkerLocal [_marker, [0,0,0]]; deleteMarker _temp; _temp != ""}}}) exitWith {};
+if (isNil "_table" || {isNull _table || {_marker == "" || {private _temp = createMarkerLocal [_marker, [0,0,0]]; deleteMarkerLocal _temp; _temp != ""}}}) exitWith {};
 
 _table enableSimulation false;
 
@@ -50,7 +50,7 @@ sebs_briefing_table_fnc_clearTable = {
 */
 
 _table call sebs_briefing_table_fnc_clearTable;
-_tableObjects = [];
+private _tableObjects = [];
 
 private _bbr = 2 boundingBoxReal _table;
 private _p1 = _bbr#0;
