@@ -1,0 +1,14 @@
+name = "Seb's Briefing Table"
+prefix = "sebs_briefing_table"
+author = "Seb"
+template = "cba"
+mainprefix = "z"
+include = ["./include"]
+files = [
+    "mod.cpp",
+    "logo.paa",
+    "logoSmall.paa",
+    "logoOver.paa"
+] 
+folder_optionals = true
+sig_version = 3

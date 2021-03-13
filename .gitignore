@@ -1,0 +1,16 @@
+
+## Added by HEMTT
+releases/*
+*.biprivatekey
+*.pbo
+keys/*
+.hemtt/local
+####
+releases
+keys
+## Added by HEMTT
+####
+
+## Added by HEMTT
+####
+.hemtt/template/
