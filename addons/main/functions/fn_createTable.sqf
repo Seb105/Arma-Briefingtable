@@ -36,7 +36,15 @@ params [
     ["_createTrigger", true]
 ];
 
-if (isNil "_table" || {isNull _table || {_marker == "" || {_temp = createMarkerLocal [_marker, [0,0,0]]; deleteMarker _temp; _temp != ""}}}) exitWith {};
+if (isNil "_table" || {
+    isNull _table || {
+        _marker == "" || {
+            private _temp = createMarkerLocal [_marker, [0,0,0]]; 
+            deleteMarkerLocal _temp; 
+            _temp != "" //a duplicate marker should fail; otherwise this marker didn't exist at all
+        }
+    }
+}) exitWith {};
 
 _table enableSimulation false;
 
@@ -50,7 +58,7 @@ sebs_briefing_table_fnc_clearTable = {
 */
 
 _table call sebs_briefing_table_fnc_clearTable;
-_tableObjects = [];
+private _tableObjects = [];
 
 private _bbr = 2 boundingBoxReal _table;
 private _p1 = _bbr#0;
@@ -112,6 +120,7 @@ private _vectorDiff = [0, 0, _tableHeight/2 + (_zOffset * _scale) + 0.05]; // ne
 } forEach _objects;
 
 private _step = 2/_terrainResolution;
+private _dirAndUp = [vectorDir _table, vectorUp _table];
 for "_posX" from -1 to 1 step _step do {
     for "_posY" from -1 to 1 step _step do {
         isNil {
@@ -148,7 +157,7 @@ for "_posX" from -1 to 1 step _step do {
             private _groundObject = createSimpleObject ["Land_VR_Shape_01_cube_1m_F", [0,0,0], true];
             _groundObject enableSimulation false;
             _groundObject setPosASL (_table modelToWorldWorld (_tablePos vectorAdd _vectorDiff));
-            _groundObject setVectorDirAndUp [vectorDir _table, vectorUp _table];
+            _groundObject setVectorDirAndUp _dirAndUp;
             _groundObject setVectorUp _normal;
             for "_selection" from 0 to 6 do {
                 _groundObject setObjectMaterial [_selection, "\a3\data_f\default.rvmat"];
