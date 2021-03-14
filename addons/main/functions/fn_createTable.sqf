@@ -12,6 +12,8 @@
  * 5: Optional <BOOL> (default: true) - Create environment sounds tirgger:
  *                                      Create a trigger that disables envionmental sounds when the current unit comes near, and puts it back to its original state when the player leaves.
  *                                      This is because all the bushes that appear on the table will still play cricket sounds, buildings will play air conditoner hums etc.
+ * 6: Optional <NUMBER> (default: 0) - Offset Z height. If your map doesn't fit on your table quite right, use this to tweak how high the entire thing shows up.
+ *
  * Return Value:
  * NONE
  *
