@@ -1,0 +1,9 @@
+class CfgFunctions {
+    class sebs_briefing_table {
+        class sebs_briefing_table {
+            file = "sebsBriefingTable";
+            class createTable {};
+            class clearTable {};
+        };
+    };
+};
