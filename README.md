@@ -30,13 +30,13 @@ Using fnc_createTable the parameters are:
 * Optional <NUMBER> (default: 1) - Scale multiplier. 3 = map is 3x the size of the table. Useful for spanning multiple tables.
 * Optional <BOOL> (default: true). Use terrain. If false then the map will be entirely flat. Just like the earth ;)
 * Optional <BOOL> (default: true) - Create environment sounds trigger:
-* Create a trigger that disables environmental sounds when the current unit comes near, and puts it back to its original state when the player leaves.
+  Create a trigger that disables environmental sounds when the current unit comes near, and puts it back to its original state when the player leaves.
 This is because all the bushes that appear on the table will still play cricket sounds, buildings will play air conditoner hums etc
 * Optional <NUMBER> (default: 0) - Offset Z height. If your map doesn't fit on your table quite right, use this to tweak how high the entire thing shows up.
-
+   
 All script effects are local.
 In order for hidden objects to actually be hidden, the function must be called after mission start. See the example mission for how to do this.
-
+  
 ### EXAMPLES
 
 TABLE OBJECT INIT (Multiplayer and join in progress compatible)
