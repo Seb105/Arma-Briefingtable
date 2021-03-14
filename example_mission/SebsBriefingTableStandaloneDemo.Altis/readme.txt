@@ -5,3 +5,5 @@ sebsBriefingTable
 description.ext
 
 DO NOT OVERWRITE YOUR MISSION.SQM. IT WILL DELETE YOUR MISSION.
+
+Alternatively, this is a fully functioning mission you can load in the editor to see how to use the functions correctly.
