@@ -17,10 +17,10 @@
  *
  * Example:
  *   TABLE OBJECT INIT:
- *      [this, "marker_0", 20, 1, true, true] call sebs_briefing_table_fnc_createTable;
+ *      [this, "marker_0", 20, 1, true, true, 0] call sebs_briefing_table_fnc_createTable;
  *
  *   SCRIPT CALL (Multiplayer & Join in progress COMPATIBLE): 
- *      [table, "marker_0", 20, 1, true, true] remoteExec ["sebs_briefing_table_fnc_createTable", 0, table];
+ *      [table, "marker_0", 20, 1, true, true, 0] remoteExec ["sebs_briefing_table_fnc_createTable", 0, table];
  *
  *  NEVER EVER EVER REMOTEXEC FROM OBJECT INIT!
  *
@@ -33,7 +33,8 @@ params [
     ["_terrainResolution", 20],
     ["_scaleMultiplier", 1],
     ["_useTerrainHeight", true],
-    ["_createTrigger", true]
+    ["_createTrigger", true],
+    ["_manualZoffset", 0]
 ];
 
 if (isNil "_table" || {
@@ -47,16 +48,6 @@ if (isNil "_table" || {
 }) exitWith {};
 
 _table enableSimulation false;
-
-/* DEBUG
-sebs_briefing_table_fnc_clearTable = {
-    params ["_table"];
-    private _tableObjects = _table getVariable ["sebs_briefing_table_tableObjects", []];
-    {deleteVehicle _x} forEach _tableObjects;
-    _table setVariable ["sebs_briefing_table_tableObjects", []];
-};
-*/
-
 _table call sebs_briefing_table_fnc_clearTable;
 private _tableObjects = [];
 
@@ -97,11 +88,11 @@ private _zOffset = if (_useTerrainHeight) then {
 } else {
     0
 };
-private _vectorDiff = [0, 0, _tableHeight/2 + (_zOffset * _scale) + 0.05]; // neatly fit all the stuff on the top of the table
+private _vectorDiff = [0, 0, _tableHeight/2 + (_zOffset * _scale) + 0.05 + _manualZoffset]; // neatly fit all the stuff on the top of the table
 
 {
     private _model = (getModelInfo _x)#1;
-    if (_model != "" && !isObjectHidden _x && {(((boundingBoxReal  _x)#2) * _scale * getObjectScale _x ) > 0.005}) then {
+    if (_model != "" && !(isObjectHidden _x) && {(((boundingBoxReal  _x)#2) * _scale * getObjectScale _x ) > 0.005}) then {
         isNil {
             private _relCentre = _dummy worldToModel (ASLtoAGL getPosWorld _x);
             private _relVectDir = _dummy vectorWorldToModel (vectorDir _x);
