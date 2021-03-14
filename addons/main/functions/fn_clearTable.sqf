@@ -18,5 +18,8 @@
 
 params ["_table"];
 private _tableObjects = _table getVariable ["sebs_briefing_table_tableObjects", []];
-{deleteVehicle _x} forEach _tableObjects;
+{
+deleteVehicle _x;
+sleep 0.4; //may need [] spawn { for it 
+} forEach _tableObjects;
 _table setVariable ["sebs_briefing_table_tableObjects", []];
