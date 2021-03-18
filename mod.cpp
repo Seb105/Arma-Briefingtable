@@ -6,5 +6,5 @@ action = "http://www.carpenoctem.co";
 description = "Github: https://github.com/Seb105/Arma-Briefingtable";
 tooltip = "Seb's Briefing Table";
 tooltipOwned = "Seb's Briefing Table Owned";
-overview = "Adds dynamic turbulence to helicopters based on their size, mass and the weather!";
+overview = "";
 overviewText = "Seb's Briefing Table Overview";
