@@ -11,7 +11,7 @@
  *
  * Example:
  *   Multiplayer & Join in progress COMPATIBLE: 
- *      [table] remoteExec ["sebs_briefing_table_fnc_clearTable", 0, table];
+ *      [YOUR_TABLE_VARIABLE] remoteExec ["sebs_briefing_table_fnc_clearTable", 0, YOUR_TABLE_VARIABLE];
  *
  * Public: No
  */
