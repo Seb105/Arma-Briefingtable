@@ -66,7 +66,7 @@ private _markerSize = getMarkerSize _marker;
 private _maxSize = _markerSize#0 max _markerSize#1; // longest edge of marker
 
 private _tableDir = getDir _table;
-private _tableSize = ((_tableWidth man _tableLength) / 2) * _scaleMultiplier * 0.9;    // Gets shortest edge of table. Why do I have to divide by 2???????????????
+private _tableSize = ((_tableWidth max _tableLength) / 2) * _scaleMultiplier * 0.9;    // Gets shortest edge of table. Why do I have to divide by 2???????????????
 private _tableRatio = (_tableWidth min _tableLength) / (_tableWidth max _tableLength); // Ratio by which the bigger side is bigger than the shorter one
 private _tableMulX = [1,1*_tableRatio] select (_tableWidth < _tableLength);
 private _tableMulY = [1,1*_tableRatio] select (_tableLength < _tableWidth);
