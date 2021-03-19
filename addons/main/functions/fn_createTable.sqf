@@ -39,6 +39,10 @@ params [
     ["_manualZoffset", 0]
 ];
 
+	//Loading screen environment has more computing power
+	startLoadingScreen ["Loading 3D table.."]; //text is actually unused
+	uiSleep 0.1; //Give engine some space to render the loading screen rsc
+
 if (isNil "_table" || {
     isNull _table || {
         _marker == "" || {
@@ -117,6 +121,8 @@ private _dirAndUp = [vectorDir _table, vectorUp _table];
 for "_posX" from -1 to 1 step _step do {
     for "_posY" from -1 to 1 step _step do {
         isNil {
+            progressLoadingScreen (linearConversion [-1,1,_posX,0,1]); //TODO: Dependent on range of _posX
+
             private _tablePos = [_posX*_tableSize, _posY*_tableSize, 0];
             private _worldPos = (_dummy modelToWorld (_tablePos vectorMultiply 1/_scale)); // divide by scale to scale back up
             private _road = roadAt (_worldPos select [0,2]);
@@ -161,6 +167,8 @@ for "_posX" from -1 to 1 step _step do {
         };
     };
 };
+
+endLoadingScreen;
 
 _table setVariable ["sebs_briefing_table_tableObjects", _tableObjects];
 deleteVehicle _dummy;
