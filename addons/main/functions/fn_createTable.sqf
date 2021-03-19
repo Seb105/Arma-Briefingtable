@@ -82,6 +82,7 @@ _markerPos set [2, (0 max getTerrainHeightASL _markerPos) + 1];
 _dummy enableSimulation false;
 _dummy setPosASL _markerPos;
 _dummy setDir (_markerDir + ([0,90] select (_tableWidth > _tableLength)));
+private _dummyDir = getDir _dummy;
 
 private _zOffset = if (_useTerrainHeight) then {
     private _minHeight = 100000;
@@ -141,7 +142,7 @@ for "_posX" from -_tableMulX to _tableMulX step _step do {
                 // You don't need to average the normals for the normal to look good.
                 // _normal = _normal vectorMultiply 1/count _normals;
                 // I have no idea why.
-                _normal = [_normal, _tableDir -_markerDir, 2] call BIS_fnc_rotateVector3D; // Not sure why I have to do this.
+                _normal = [_normal, _tableDir -_dummyDir, 2] call BIS_fnc_rotateVector3D; // Not sure why I have to do this.
                 private _cos = abs (vectorUp _table vectorCos _normal);
                 private _dynamicSize = 1.1/_cos; // scale cubes based on angle
                 _cubeSize = _cubeSize * _dynamicSize; // 
