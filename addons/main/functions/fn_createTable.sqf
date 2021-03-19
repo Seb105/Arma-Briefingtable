@@ -64,10 +64,12 @@ private _markerDir = markerDir _marker;
 private _markerPos = getMarkerPos _marker;
 private _markerSize = getMarkerSize _marker;
 private _maxSize = _markerSize#0 max _markerSize#1; // longest edge of marker
-_marker setMarkerSize [_maxSize, _maxSize]; // Marker must be square
 
 private _tableDir = getDir _table;
-private _tableSize = ((_tableWidth min _tableLength) / 2) * _scaleMultiplier * 0.9;    // Gets shortest edge of table. Why do I have to divide by 2???????????????
+private _tableSize = ((_tableWidth man _tableLength) / 2) * _scaleMultiplier * 0.9;    // Gets shortest edge of table. Why do I have to divide by 2???????????????
+private _tableRatio = (_tableWidth min _tableLength) / (_tableWidth max _tableLength); // Ratio by which the bigger side is bigger than the shorter one
+private _tableMulX = [1,1*_tableRatio] select (_tableWidth < _tableLength);
+private _tableMulY = [1,1*_tableRatio] select (_tableLength < _tableWidth);
 private _scale = _tableSize/_maxSize; // fit longest edge of marker on table
 
 private _squareDist = sqrt (2*_maxSize*_maxSize);
@@ -114,8 +116,8 @@ private _vectorDiff = [0, 0, _tableHeight/2 + (_zOffset * _scale) + 0.05 + _manu
 
 private _step = 2/_terrainResolution;
 private _dirAndUp = [vectorDir _table, vectorUp _table];
-for "_posX" from -1 to 1 step _step do {
-    for "_posY" from -1 to 1 step _step do {
+for "_posX" from -_tableMulX to _tableMulX step _step do {
+    for "_posY" from -_tableMulY to _tableMulY step _step do {
         isNil {
             private _tablePos = [_posX*_tableSize, _posY*_tableSize, 0];
             private _worldPos = (_dummy modelToWorld (_tablePos vectorMultiply 1/_scale)); // divide by scale to scale back up
