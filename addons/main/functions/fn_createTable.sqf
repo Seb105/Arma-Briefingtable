@@ -81,7 +81,7 @@ private _dummy = "Land_HelipadEmpty_F" createVehicleLocal _markerPos;
 _markerPos set [2, (0 max getTerrainHeightASL _markerPos) + 1];
 _dummy enableSimulation false;
 _dummy setPosASL _markerPos;
-_dummy setDir _markerDir;
+_dummy setDir (_markerDir + ([0,90] select (_tableWidth > _tableLength)));
 
 private _zOffset = if (_useTerrainHeight) then {
     private _minHeight = 100000;
